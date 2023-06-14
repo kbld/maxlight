@@ -2,7 +2,7 @@
 
 *,
 body {
-  font-family: field-gothic-XWide, sans-serif;
+  font-family: roc-grotesk, sans-serif;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -106,18 +106,14 @@ label {
       transform: translate(0, 0);
     }
   }
-  
-  
 
   @keyframes animation-child-2 {
-    
   }
 
   @keyframes animation-child-3 {
-    
   }
 
-  .overlay-blur{
+  .overlay-blur {
     width: 100%;
     height: 100vh;
     z-index: 9993;
@@ -126,7 +122,6 @@ label {
     backdrop-filter: blur(1020px);
     -webkit-backdrop-filter: blur(1020px);
   }
-
 }
 
 @keyframes gradientAnimation {
@@ -140,7 +135,6 @@ label {
     background-position: 0% 50%;
   }
 }
-
 
 .navbar {
   width: 100%;
@@ -193,6 +187,56 @@ label {
   flex-direction: column;
   z-index: 9999;
 
+  .box-spinner-button {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    .box-spinner {
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      justify-content: center;
+      margin-top: 10px;
+      .loading-spinner-small {
+        width: 40px;
+        height: 40px;
+        border: 4px solid #f3f3f3;
+        border-top: 4px solid #ef08dc;
+        border-radius: 50%;
+        animation: spin 2s linear infinite;
+      }
+      span {
+        color: #fff;
+        margin-left: 10px;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    }
+
+    button {
+      background-color: transparent;
+      border: 2px solid #fff;
+      border-radius: 50px;
+      padding: 10px 20px;
+      color: #fff;
+      transition: 0.5s;
+      cursor: pointer;
+      &:hover {
+        background-color: #fff;
+        border: 2px solid #fff;
+        color: #000;
+      }
+    }
+  }
+
   .song-box {
     display: flex;
     align-items: center;
@@ -230,24 +274,6 @@ label {
       -webkit-box-shadow: 5px 5px 47px 5px rgba(0, 0, 0, 0.27);
       box-shadow: 5px 5px 47px 5px rgba(0, 0, 0, 0.27);
       border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-  }
-
-  .record-button {
-    background-color: transparent;
-    border: none;
-    width: 70px;
-    height: 70px;
-    border: 2px solid #fff;
-    border-radius: 50px;
-    padding: 15px;
-    cursor: pointer;
-    margin: 20px;
-    fill: #fff;
-    transition: 0.5s;
-    &:hover {
-      background-color: #fff;
-      fill: #000;
     }
   }
 }

@@ -5,6 +5,7 @@ import ColorThief from "colorthief";
 const App = () => {
   const [songData, setSongData] = useState(null);
   const [gradientColors, setGradientColors] = useState(null);
+  const [loading, setLoading] = useState(false);
   const fileInputRef = useRef(null);
 
   const handleFileChange = (event) => {
@@ -18,6 +19,8 @@ const App = () => {
   };
 
   const handleAudioRecognition = async (audioBlob) => {
+    setLoading(true);
+
     const formData = new FormData();
     formData.append("audio", audioBlob, "recording.mp3");
 
@@ -39,9 +42,13 @@ const App = () => {
     } catch (error) {
       console.error(error);
     }
+
+    setLoading(false);
   };
 
   const generateGradient = async () => {
+    if (loading) return;
+
     if (
       songData &&
       songData.track &&
@@ -79,9 +86,14 @@ const App = () => {
         animation: "gradientAnimation 10s linear infinite",
       }
     : {};
-
   return (
     <div>
+      {loading && (
+        <div className="loading-spinner">
+          <div className="spinner"></div>
+        </div>
+      )}
+
       <div className="gradient-container" style={gradientStyle}>
         <div className="back-circular-blur">
           <span></span>
@@ -131,11 +143,12 @@ const App = () => {
             </div>
           </div>
         </div>
+
         <div className="box-central">
           <div>
             {songData && songData.track && (
               <div className="song-box">
-                <img src={songData.track.images.coverart}></img>
+                <img src={songData.track.images.coverart} alt="Cover Art" />
                 <div className="box-text">
                   <h2>{songData.track.subtitle}</h2>
                   <h3>{songData.track.title}</h3>
@@ -144,18 +157,24 @@ const App = () => {
             )}
           </div>
 
-          <div>
-          <input
-            type="file"
-            accept="audio/mp3"
-            onChange={handleFileChange}
-            ref={fileInputRef}
-            style={{ display: "none" }}
-          />
-          <button onClick={() => fileInputRef.current.click()}>
-            Sélectionner un fichier MP3
-          </button>
-        </div>
+          <div className="box-spinner-button">
+            <input
+              type="file"
+              accept="audio/mp3"
+              onChange={handleFileChange}
+              ref={fileInputRef}
+              style={{ display: "none" }}
+            />
+            <button onClick={() => fileInputRef.current.click()}>
+              Sélectionner un fichier MP3
+            </button>
+            {loading && (
+              <div className="box-spinner">
+                <div className="loading-spinner-small"></div>
+                <span>Recherche en cours via l'API Shazam</span>
+              </div>
+            )}
+          </div>
         </div>
 
         <footer>
