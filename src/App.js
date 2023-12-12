@@ -127,7 +127,6 @@ const App = () => {
             </div>
           </div>
         </div>
-     
 
         <div className="box-central">
           <div>
