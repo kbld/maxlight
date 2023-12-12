@@ -3,13 +3,10 @@ import axios from "axios";
 import ColorThief from "colorthief";
 
 const App = () => {
-  // États pour stocker les données de la chanson, les couleurs du gradient et l'état de chargement
   const [songData, setSongData] = useState(null);
   const [gradientColors, setGradientColors] = useState(null);
   const [loading, setLoading] = useState(false);
   const fileInputRef = useRef(null);
-
-  // Fonction déclenchée lors du changement de fichier audio
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -20,8 +17,6 @@ const App = () => {
     };
     reader.readAsArrayBuffer(file);
   };
-
-  // Fonction pour reconnaître l'audio via l'API Shazam
 
   const handleAudioRecognition = async (audioBlob) => {
     setLoading(true);
@@ -50,7 +45,6 @@ const App = () => {
 
     setLoading(false);
   };
-  // Fonction pour générer le gradient de couleur à partir de l'image de la chanson
 
   const generateGradient = async () => {
     if (loading) return;
@@ -81,13 +75,9 @@ const App = () => {
     }
   };
 
-  // Utilisation de useEffect pour générer le gradient une fois que les données de la chanson ont été mises à jour
-
   useEffect(() => {
     generateGradient();
   }, [songData]);
-
-  // Style du gradient pour l'arrière-plan
 
   const gradientStyle = gradientColors
     ? {
@@ -96,12 +86,8 @@ const App = () => {
         animation: "gradientAnimation 10s linear infinite",
       }
     : {};
-
-  // interface utilisateur
-
   return (
     <div>
-      {/* Affichage du spinner de chargement lors du chargement */}
       {loading && (
         <div className="loading-spinner">
           <div className="spinner"></div>
@@ -124,6 +110,36 @@ const App = () => {
             <div className="link-box-navbar">
               <a>Comment ça marche ?</a>
               <a>En savoir plus</a>
+            </div>
+          </div>
+        </div>
+        <div className="box-vertical-boxs">
+          <div className="vertical-light">
+            <div className="vertical-light-box">
+              <span></span>
+              <span></span>
+            </div>
+            <div className="vertical-light-box">
+              <span></span>
+              <span></span>
+            </div>
+            <div className="vertical-light-box">
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+          <div className="vertical-light">
+            <div className="vertical-light-box">
+              <span></span>
+              <span></span>
+            </div>
+            <div className="vertical-light-box">
+              <span></span>
+              <span></span>
+            </div>
+            <div className="vertical-light-box">
+              <span></span>
+              <span></span>
             </div>
           </div>
         </div>
