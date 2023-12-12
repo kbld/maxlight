@@ -127,36 +127,7 @@ const App = () => {
             </div>
           </div>
         </div>
-        <div className="box-vertical-boxs">
-          <div className="vertical-light">
-            <div className="vertical-light-box">
-              <span></span>
-              <span></span>
-            </div>
-            <div className="vertical-light-box">
-              <span></span>
-              <span></span>
-            </div>
-            <div className="vertical-light-box">
-              <span></span>
-              <span></span>
-            </div>
-          </div>
-          <div className="vertical-light">
-            <div className="vertical-light-box">
-              <span></span>
-              <span></span>
-            </div>
-            <div className="vertical-light-box">
-              <span></span>
-              <span></span>
-            </div>
-            <div className="vertical-light-box">
-              <span></span>
-              <span></span>
-            </div>
-          </div>
-        </div>
+     
 
         <div className="box-central">
           <div>
