@@ -3,11 +3,13 @@ import axios from "axios";
 import ColorThief from "colorthief";
 
 const App = () => {
+  // State pour stocker les données de la chanson, les couleurs du gradient et l'état de chargement
   const [songData, setSongData] = useState(null);
   const [gradientColors, setGradientColors] = useState(null);
   const [loading, setLoading] = useState(false);
   const fileInputRef = useRef(null);
 
+  // Gérer le changement de fichier audio
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     const reader = new FileReader();
@@ -18,6 +20,7 @@ const App = () => {
     reader.readAsArrayBuffer(file);
   };
 
+  // Reconnaissance audio : envoi du fichier audio à l'API Shazam
   const handleAudioRecognition = async (audioBlob) => {
     setLoading(true);
 
@@ -46,6 +49,7 @@ const App = () => {
     setLoading(false);
   };
 
+  // Générer un gradient basé sur les couleurs extraites de l'image de la chanson
   const generateGradient = async () => {
     if (loading) return;
 
@@ -75,10 +79,12 @@ const App = () => {
     }
   };
 
+  // Mettre à jour le gradient chaque fois que les données de la chanson changent
   useEffect(() => {
     generateGradient();
   }, [songData]);
 
+  // Style du gradient basé sur les couleurs extraites de l'image de la chanson
   const gradientStyle = gradientColors
     ? {
         backgroundImage: `linear-gradient(45deg, ${gradientColors[0]}, ${gradientColors[1]})`,
@@ -86,8 +92,10 @@ const App = () => {
         animation: "gradientAnimation 10s linear infinite",
       }
     : {};
+    
   return (
     <div>
+         {/* Afficher le spinner de chargement pendant la recherche */}
       {loading && (
         <div className="loading-spinner">
           <div className="spinner"></div>
@@ -190,3 +198,20 @@ const App = () => {
 };
 
 export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
